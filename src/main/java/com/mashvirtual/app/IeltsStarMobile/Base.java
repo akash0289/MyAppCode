@@ -2,7 +2,6 @@ package com.mashvirtual.app.IeltsStarMobile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.URL;
@@ -24,7 +23,7 @@ public class Base {
 	public static AndroidDriver<AndroidElement> driver;
 	
 	//Appium Server Start
-	/*public AppiumDriverLocalService startServer() 
+	public AppiumDriverLocalService startServer() 
 	{
 		boolean flag=checkIfServerIsRunning(4723);
 		if(!flag) {
@@ -48,10 +47,16 @@ public static boolean checkIfServerIsRunning(int port) {
 			serverSocket=null;
 		}
 		return isServerRunning;
-	}*/
+	}
+
+   public static void startEmulator() throws IOException, InterruptedException
+   {
+	 Runtime.getRuntime().exec(System.getProperty("user.dir")+"\\src\\main\\java\\resources\\startEmulator.bat");
+	 Thread.sleep(6000);
+   }
 
     
-       public static AndroidDriver<AndroidElement> capabilities(String appName) throws IOException
+       public static AndroidDriver<AndroidElement> capabilities(String appName) throws IOException, InterruptedException
          {                                                                         
     	   FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\com\\mashvirtual\\app\\IeltsStarMobile\\Global.properties");
     		Properties prop=new Properties();
@@ -65,7 +70,10 @@ public static boolean checkIfServerIsRunning(int port) {
 	
     	   DesiredCapabilities cap=new DesiredCapabilities();
     	   String device=(String) prop.get("device");
-   		 
+    	   if(device.contains("emulator"))
+   		    {
+   			   startEmulator();
+   		    }
     	   
     	  
     	   

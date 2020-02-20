@@ -6,6 +6,7 @@
       <class name="com.mashvirtual.app.IeltsStarMobile.IeltsStarTest">
         <methods>
           <include name="allTestCases"/>
+          <include name="killAllNodes"/>
         </methods>
       </class> <!-- com.mashvirtual.app.IeltsStarMobile.IeltsStarTest -->
     </classes>
