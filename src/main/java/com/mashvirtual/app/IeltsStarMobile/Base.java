@@ -22,6 +22,8 @@ public class Base {
 	public static AppiumDriverLocalService service;
 	public static AndroidDriver<AndroidElement> driver;
 	
+	 
+	
 	//Appium Server Start
 	public AppiumDriverLocalService startServer() 
 	{
@@ -49,14 +51,14 @@ public static boolean checkIfServerIsRunning(int port) {
 		return isServerRunning;
 	}
 
-   public static void startEmulator() throws IOException, InterruptedException
-   {
-	 Runtime.getRuntime().exec(System.getProperty("user.dir")+"\\src\\main\\java\\resources\\startEmulator.bat");
-	 Thread.sleep(6000);
-   }
+public static void startEmulator() throws IOException, InterruptedException
+{
+	 Runtime.getRuntime().exec("C:\\Users\\MV\\MyAppCode\\src\\main\\java\\resources\\StartEmulator.bat");
+	 Thread.sleep(4000);
+}
 
     
-       public static AndroidDriver<AndroidElement> capabilities(String appName) throws IOException, InterruptedException
+      public static AndroidDriver<AndroidElement> capabilities(String appName) throws IOException, InterruptedException
          {                                                                         
     	   FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\com\\mashvirtual\\app\\IeltsStarMobile\\Global.properties");
     		Properties prop=new Properties();
@@ -70,7 +72,7 @@ public static boolean checkIfServerIsRunning(int port) {
 	
     	   DesiredCapabilities cap=new DesiredCapabilities();
     	   String device=(String) prop.get("device");
-    	   if(device.contains("emulator"))
+    	   if(device.contains("Pixel_2_XL_API_29"))
    		    {
    			   startEmulator();
    		    }
